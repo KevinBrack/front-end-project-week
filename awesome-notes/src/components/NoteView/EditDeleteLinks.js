@@ -25,7 +25,7 @@ const StyledP = styled.p`
 const EditDeleteLinks = props => {
   return (
     <LinksWrapper>
-      <Link to={`/edit/${props.currentNote._id}`}>
+      <Link to={`/edit/${props.currentNote.id}`}>
         <StyledP>edit</StyledP>
       </Link>
       <div onClick={props.showModal}>

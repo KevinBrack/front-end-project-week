@@ -58,19 +58,6 @@ class ContentWindow extends React.Component {
     this.setState({ content: newContent });
   };
 
-  handleEditNote = note => {
-    const newContent = this.state.content.map(note => note);
-    const elementPos = newContent
-      .map(function(x) {
-        return x.id;
-      })
-      .indexOf(note.id);
-    console.log("HANDLE EDIT NOTE ARRAY INDEX", elementPos);
-    newContent.splice(elementPos, 1, note);
-    console.log("HANDLE EDIT NEW CONTENT", newContent);
-    this.setState({ content: newContent });
-  };
-
   handleDeleteNote = note => {
     console.log("HANDLE DELETE NOTE CALLED!");
     console.log("NOTE PASSED TO HANDLE DELETE", note);

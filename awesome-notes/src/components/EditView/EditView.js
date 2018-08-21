@@ -2,6 +2,8 @@ import React from "react";
 import styled from "styled-components";
 import ContentHeading from "../ContentHeading/ContentHeading";
 import GlobalButton from "../GlobalButton/GlobalButton";
+import axios from "axios";
+import { withRouter } from "react-router-dom";
 
 const EditWrapper = styled.div`
   width: 610px;
@@ -27,41 +29,63 @@ class EditView extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      current: this.props.content.find(
-        x => x._id === this.props.match.params._id
-      ),
+      // current: this.props.content.find(
+      //   x => x.id === this.props.match.params.id
+      // ),
+      current: {},
       title: "",
-      textBody: ""
+      text_body: ""
     };
   }
 
-  /* make me */
+  getNote(ID) {
+    axios
+      .get(`https://murmuring-oasis-27874.herokuapp.com/api/notes/${ID}`)
+      .then(res => {
+        console.log("GET NOTE RESPONSE FOR EDIT", res.data[0]);
+        this.setState({ current: res.data[0] });
+      });
+  }
+
   handleChange = e => {
     // console.log("HANDLE CHANGE EVENT TARGET", e.target);
     this.setState({ [e.target.name]: e.target.value });
   };
 
-  /* make me */
+  handleEdit = note => {
+    axios
+      .put(
+        `https://murmuring-oasis-27874.herokuapp.com/api/notes/${
+          this.state.current.id
+        }`,
+        note
+      )
+      .then(res => console.log("PUT RESPONSE", res))
+      .catch(err => console.log(err));
+  };
+
+  // /* make me */
   handleSubmit = e => {
     e.preventDefault();
     let message = {
       tags: this.state.current.tags,
       title: this.state.title,
-      _id: this.state.current._id,
-      textBody: this.state.textBody,
-      __v: this.state.current.__v
+      id: this.state.current.id,
+      text_body: this.state.text_body
     };
     console.log(message);
-    this.props.editHandler(message);
-    this.props.history.push(`/note/${this.state.current._id}`);
+    this.handleEdit(message);
+
+    this.props.history.push(`/note/${this.state.current.id}`);
   };
 
   componentDidMount() {
+    this.getNote(this.props.match.params.id);
     if (!this.state.title) {
       this.setState({ title: this.state.current.title });
     }
-    if (!this.state.textBody) {
-      this.setState({ textBody: this.state.current.textBody });
+    if (!this.state.text_body) {
+      this.setState({ text_body: this.state.current.text_body });
     }
   }
 
@@ -82,12 +106,12 @@ class EditView extends React.Component {
           <br />
           <BodyInput
             className="form-control"
-            name="textBody"
+            name="text_body"
             placeholder="note"
             value={
-              this.state.textBody
-                ? this.state.textBody
-                : this.state.current.textBody
+              this.state.text_body
+                ? this.state.text_body
+                : this.state.current.text_body
             }
             onChange={this.handleChange}
           />
@@ -98,4 +122,4 @@ class EditView extends React.Component {
   }
 }
 
-export default EditView;
+export default withRouter(EditView);
