@@ -17,6 +17,9 @@ const CardHeader = styled.h3`
   font-weight: bold;
   font-size: 2rem;
   margin: 0;
+  text-overflow: ellipsis;
+  word-wrap: break-word;
+  overflow: hidden;
 `;
 
 const CardBody = styled.p`

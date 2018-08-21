@@ -21,9 +21,6 @@ class NoteView extends React.Component {
     super(props);
     this.state = {
       showDeleteModal: false,
-      // currentNote: this.props.content.find(
-      //   x => x.id === this.props.match.params.id
-      // )
       currentNote: {}
     };
   }
