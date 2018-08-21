@@ -29,6 +29,10 @@ class NoteView extends React.Component {
     this.getNote(this.props.match.params.id);
   }
 
+  componentDidUpdate() {
+    // this.getNote(this.props.match.params.id);
+  }
+
   getNote(ID) {
     axios
       .get(`https://murmuring-oasis-27874.herokuapp.com/api/notes/${ID}`)

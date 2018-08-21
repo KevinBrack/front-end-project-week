@@ -29,7 +29,7 @@ class CreateNewView extends React.Component {
     super(props);
     this.state = {
       title: "",
-      textBody: ""
+      text_body: ""
     };
   }
 
@@ -42,16 +42,14 @@ class CreateNewView extends React.Component {
   /* make me */
   handleSubmit = e => {
     e.preventDefault();
-    if (this.state.title && this.state.textBody) {
+    if (this.state.title && this.state.text_body) {
       let message = {
         title: this.state.title,
-        textBody: this.state.textBody,
-        _id: Math.floor(Math.random() * 999999) + "",
-        tags: []
+        text_body: this.state.text_body
       };
       console.log("MESSAGE", message);
       this.props.noteHandler(message);
-      this.props.history.push(`/note/${message._id}`);
+      this.props.history.push("/");
     } else {
       alert("Please make sure you have entered a title and note body");
     }
@@ -71,7 +69,7 @@ class CreateNewView extends React.Component {
           <br />
           <BodyInput
             className="form-control"
-            name="textBody"
+            name="text_body"
             placeholder="note"
             onChange={this.handleChange}
           />

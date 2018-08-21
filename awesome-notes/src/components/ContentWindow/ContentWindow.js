@@ -40,6 +40,10 @@ class ContentWindow extends React.Component {
     this.getNotes(this.state.url);
   }
 
+  componentDidUpdate() {
+    // this.getNotes(this.state.url);
+  }
+
   getNotes = URL => {
     axios
       .get(`${URL}api/notes`)
@@ -53,24 +57,18 @@ class ContentWindow extends React.Component {
   };
 
   handleNewNote = note => {
-    const newContent = this.state.content.map(note => note);
-    newContent.push(note);
-    this.setState({ content: newContent });
+    axios.post(`${this.state.url}api/notes`, note);
   };
 
   handleDeleteNote = note => {
     console.log("HANDLE DELETE NOTE CALLED!");
     console.log("NOTE PASSED TO HANDLE DELETE", note);
-    let newContent = this.state.content.map(note => note);
-    const elementPos = newContent
-      .map(function(x) {
-        return x.id;
-      })
-      .indexOf(note.id);
-    console.log("ELEMENT POSITION", elementPos);
-    newContent.splice(elementPos, 1);
-    this.setState({ content: newContent });
-    console.log("POST DELETE STATE", this.state);
+    const ID = note.id;
+    axios
+      .delete(`https://murmuring-oasis-27874.herokuapp.com/api/notes/${ID}`)
+      .then(res => console.log(res))
+      .catch(error => console.log(error));
+    this.getNotes(this.state.url);
   };
 
   render() {
