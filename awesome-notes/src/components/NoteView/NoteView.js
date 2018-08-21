@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import EditDeleteLinks from "./EditDeleteLinks";
 import DeleteModal from "../DeleteModal/DeleteModal";
+import axios from "axios";
 
 import ContentHeading from "../ContentHeading/ContentHeading";
 
@@ -20,10 +21,24 @@ class NoteView extends React.Component {
     super(props);
     this.state = {
       showDeleteModal: false,
-      currentNote: this.props.content.find(
-        x => x._id === this.props.match.params._id
-      )
+      // currentNote: this.props.content.find(
+      //   x => x.id === this.props.match.params.id
+      // )
+      currentNote: {}
     };
+  }
+
+  componentDidMount() {
+    this.getNote(this.props.match.params.id);
+  }
+
+  getNote(ID) {
+    axios
+      .get(`https://murmuring-oasis-27874.herokuapp.com/api/notes/${ID}`)
+      .then(res => {
+        console.log("GET NOTE RESPONSE", res.data[0]);
+        this.setState({ currentNote: res.data[0] });
+      });
   }
 
   ShowModal = () => {
@@ -48,7 +63,7 @@ class NoteView extends React.Component {
           showModal={this.ShowModal}
         />
         <ContentHeading message={this.state.currentNote.title} />
-        <ContentParagraph>{this.state.currentNote.textBody}</ContentParagraph>
+        <ContentParagraph>{this.state.currentNote.text_body}</ContentParagraph>
         {this.state.showDeleteModal ? (
           <DeleteModal
             currentNote={this.state.currentNote}

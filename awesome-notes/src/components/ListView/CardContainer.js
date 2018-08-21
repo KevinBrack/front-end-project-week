@@ -14,7 +14,7 @@ const CardContainer = props => {
   return (
     <CardWrapper>
       {props.content.map(note => {
-        return <Card note={note} key={note._id} />;
+        return <Card note={note} key={note.id} />;
       })}
     </CardWrapper>
   );

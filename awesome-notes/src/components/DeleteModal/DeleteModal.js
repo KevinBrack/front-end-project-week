@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import GlobalButton from "../GlobalButton/GlobalButton";
+// import GlobalButton from "../GlobalButton/GlobalButton";
 import DeleteButton from "../GlobalButton/DeleteButton";
 import CancelDeleteButton from "../GlobalButton/CancelDeleteButton";
 

@@ -62,9 +62,9 @@ class ContentWindow extends React.Component {
     const newContent = this.state.content.map(note => note);
     const elementPos = newContent
       .map(function(x) {
-        return x._id;
+        return x.id;
       })
-      .indexOf(note._id);
+      .indexOf(note.id);
     console.log("HANDLE EDIT NOTE ARRAY INDEX", elementPos);
     newContent.splice(elementPos, 1, note);
     console.log("HANDLE EDIT NEW CONTENT", newContent);
@@ -77,9 +77,9 @@ class ContentWindow extends React.Component {
     let newContent = this.state.content.map(note => note);
     const elementPos = newContent
       .map(function(x) {
-        return x._id;
+        return x.id;
       })
-      .indexOf(note._id);
+      .indexOf(note.id);
     console.log("ELEMENT POSITION", elementPos);
     newContent.splice(elementPos, 1);
     this.setState({ content: newContent });
@@ -96,7 +96,7 @@ class ContentWindow extends React.Component {
         />
 
         <Route
-          path="/note/:_id"
+          path="/note/:id"
           render={props => (
             <NoteView
               {...props}
@@ -114,7 +114,7 @@ class ContentWindow extends React.Component {
         />
 
         <Route
-          path="/edit/:_id"
+          path="/edit/:id"
           render={props => (
             <EditView
               {...props}
