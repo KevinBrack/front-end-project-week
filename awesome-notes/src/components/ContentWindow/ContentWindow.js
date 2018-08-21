@@ -40,9 +40,17 @@ class ContentWindow extends React.Component {
     this.getNotes(this.state.url);
   }
 
-  componentDidUpdate() {
-    // this.getNotes(this.state.url);
-  }
+  refreshNotes = () => {
+    axios
+      .get("https://murmuring-oasis-27874.herokuapp.com/api/notes")
+      .then(res => {
+        console.log("GET RESPONSE", res);
+        this.setState({ content: res.data });
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
 
   getNotes = URL => {
     axios
@@ -58,6 +66,7 @@ class ContentWindow extends React.Component {
 
   handleNewNote = note => {
     axios.post(`${this.state.url}api/notes`, note);
+    this.refreshNotes();
   };
 
   handleDeleteNote = note => {
@@ -68,7 +77,7 @@ class ContentWindow extends React.Component {
       .delete(`https://murmuring-oasis-27874.herokuapp.com/api/notes/${ID}`)
       .then(res => console.log(res))
       .catch(error => console.log(error));
-    this.getNotes(this.state.url);
+    this.refreshNotes();
   };
 
   render() {
@@ -105,6 +114,7 @@ class ContentWindow extends React.Component {
               {...props}
               content={this.state.content}
               editHandler={this.handleEditNote}
+              refreshNotes={this.refreshNotes}
             />
           )}
         />

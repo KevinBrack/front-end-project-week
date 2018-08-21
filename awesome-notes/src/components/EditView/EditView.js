@@ -62,6 +62,7 @@ class EditView extends React.Component {
       )
       .then(res => console.log("PUT RESPONSE", res))
       .catch(err => console.log(err));
+    this.props.refreshNotes();
   };
 
   // /* make me */
