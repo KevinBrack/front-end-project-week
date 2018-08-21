@@ -1,13 +1,14 @@
 import React from "react";
 import styled from "styled-components";
 import { Route } from "react-router-dom";
+import axios from "axios";
 
 import ListView from "../ListView/ListView";
 import NoteView from "../NoteView/NoteView";
 import EditView from "../EditView/EditView";
 import CreateNewView from "../CreateNewView/CreateNewView";
 
-import Sample from "../../placeholder JSON/Sample";
+// import Sample from "../../placeholder JSON/Sample";
 
 const StyledWindow = styled.div`
   position: relative;
@@ -29,10 +30,27 @@ class ContentWindow extends React.Component {
       possibleViews: ["note", "new", "edit", "list"],
       currentView: "list",
       deleteModalVisible: true,
-      content: Sample,
-      selectedNote: "01"
+      content: [],
+      selectedNote: "01",
+      url: "https://murmuring-oasis-27874.herokuapp.com/"
     };
   }
+
+  componentDidMount() {
+    this.getNotes(this.state.url);
+  }
+
+  getNotes = URL => {
+    axios
+      .get(`${URL}api/notes`)
+      .then(res => {
+        console.log("GET RESPONSE", res);
+        this.setState({ content: res.data });
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
 
   handleNewNote = note => {
     const newContent = this.state.content.map(note => note);
