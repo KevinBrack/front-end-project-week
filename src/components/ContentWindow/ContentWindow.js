@@ -52,12 +52,15 @@ class ContentWindow extends React.Component {
       });
   };
 
+  postChangeArray = array => {
+    this.setState({ content: array });
+  };
+
   getNotes = URL => {
     axios
       .get(`${URL}api/notes`)
       .then(res => {
-        console.log("GET RESPONSE", res);
-        this.setState({ content: res.data });
+        this.postChangeArray(res.data);
       })
       .catch(err => {
         console.log(err);
@@ -65,8 +68,10 @@ class ContentWindow extends React.Component {
   };
 
   handleNewNote = note => {
-    axios.post(`${this.state.url}api/notes`, note);
-    this.refreshNotes();
+    axios
+      .post(`${this.state.url}api/notes`, note)
+      .then(res => this.postChangeArray(res.data))
+      .catch(err => console.log(err));
   };
 
   handleDeleteNote = note => {
@@ -75,7 +80,7 @@ class ContentWindow extends React.Component {
     const ID = note.id;
     axios
       .delete(`https://projweekbackend.herokuapp.com/api/notes/${ID}`)
-      .then(res => console.log(res))
+      .then(res => this.postChangeArray(res.data))
       .catch(error => console.log(error));
     this.refreshNotes();
   };
