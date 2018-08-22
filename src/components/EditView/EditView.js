@@ -40,7 +40,7 @@ class EditView extends React.Component {
 
   getNote(ID) {
     axios
-      .get(`https://murmuring-oasis-27874.herokuapp.com/api/notes/${ID}`)
+      .get(`https://projweekbackend.herokuapp.com/api/notes/${ID}`)
       .then(res => {
         console.log("GET NOTE RESPONSE FOR EDIT", res.data[0]);
         this.setState({ current: res.data[0] });

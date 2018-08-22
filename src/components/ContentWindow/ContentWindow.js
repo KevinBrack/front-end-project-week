@@ -32,7 +32,7 @@ class ContentWindow extends React.Component {
       deleteModalVisible: true,
       content: [],
       selectedNote: "01",
-      url: "https://murmuring-oasis-27874.herokuapp.com/"
+      url: "https://projweekbackend.herokuapp.com/"
     };
   }
 
@@ -42,7 +42,7 @@ class ContentWindow extends React.Component {
 
   refreshNotes = () => {
     axios
-      .get("https://murmuring-oasis-27874.herokuapp.com/api/notes")
+      .get("https://projweekbackend.herokuapp.com/api/notes")
       .then(res => {
         console.log("GET RESPONSE", res);
         this.setState({ content: res.data });
@@ -74,7 +74,7 @@ class ContentWindow extends React.Component {
     console.log("NOTE PASSED TO HANDLE DELETE", note);
     const ID = note.id;
     axios
-      .delete(`https://murmuring-oasis-27874.herokuapp.com/api/notes/${ID}`)
+      .delete(`https://projweekbackend.herokuapp.com/api/notes/${ID}`)
       .then(res => console.log(res))
       .catch(error => console.log(error));
     this.refreshNotes();
