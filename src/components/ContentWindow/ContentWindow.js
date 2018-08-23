@@ -90,12 +90,12 @@ class ContentWindow extends React.Component {
       <StyledWindow>
         <Route
           exact
-          path="/"
+          path="/lambda_notes/"
           render={props => <ListView {...props} content={this.state.content} />}
         />
 
         <Route
-          path="/note/:id"
+          path="/lambda_notes/note/:id"
           render={props => (
             <NoteView
               {...props}
@@ -106,14 +106,14 @@ class ContentWindow extends React.Component {
         />
 
         <Route
-          path="/new"
+          path="/lambda_notes/new"
           render={props => (
             <CreateNewView {...props} noteHandler={this.handleNewNote} />
           )}
         />
 
         <Route
-          path="/edit/:id"
+          path="/lambda_notes/edit/:id"
           render={props => (
             <EditView
               {...props}
