@@ -43,7 +43,7 @@ const ButtonSpacer = styled.div`
 const TextSection = styled.p``;
 
 const DeleteModal = props => {
-  console.log("DELETE MODAL PROPS", props);
+  // console.log("DELETE MODAL PROPS", props);
   return (
     <ModalWrapper>
       <DeleteButtonsWrapper>

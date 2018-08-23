@@ -42,7 +42,7 @@ class EditView extends React.Component {
     axios
       .get(`https://projweekbackend.herokuapp.com/api/notes/${ID}`)
       .then(res => {
-        console.log("GET NOTE RESPONSE FOR EDIT", res.data[0]);
+        // console.log("GET NOTE RESPONSE FOR EDIT", res.data[0]);
         this.setState({ current: res.data[0] });
       });
   }
@@ -73,7 +73,7 @@ class EditView extends React.Component {
       id: this.state.current.id,
       text_body: this.state.text_body
     };
-    console.log(message);
+    // console.log(message);
     this.handleEdit(message);
 
     this.props.history.push(`/note/${this.state.current.id}`);

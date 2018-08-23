@@ -25,7 +25,7 @@ const BodyInput = styled.textarea`
 
 class CreateNewView extends React.Component {
   constructor(props) {
-    console.log("CREATE NEW VIEW PROPS", props);
+    // console.log("CREATE NEW VIEW PROPS", props);
     super(props);
     this.state = {
       title: "",
@@ -47,7 +47,7 @@ class CreateNewView extends React.Component {
         title: this.state.title,
         text_body: this.state.text_body
       };
-      console.log("MESSAGE", message);
+      // console.log("MESSAGE", message);
       this.props.noteHandler(message);
       this.props.history.push("/");
     } else {

@@ -37,23 +37,23 @@ class NoteView extends React.Component {
     axios
       .get(`https://projweekbackend.herokuapp.com/api/notes/${ID}`)
       .then(res => {
-        console.log("GET NOTE RESPONSE", res.data[0]);
+        // console.log("GET NOTE RESPONSE", res.data[0]);
         this.setState({ currentNote: res.data[0] });
       });
   }
 
   ShowModal = () => {
-    console.log("SHOW MODAL CALLED");
-    console.log("PREVIOUS STATE", this.state);
+    // console.log("SHOW MODAL CALLED");
+    // console.log("PREVIOUS STATE", this.state);
     this.setState({ showDeleteModal: true });
-    console.log("POST STATE", this.state);
+    // console.log("POST STATE", this.state);
   };
 
   HideModal = () => {
-    console.log("HIDE MODAL CALLED");
-    console.log("PREVIOUS STATE", this.state);
+    // console.log("HIDE MODAL CALLED");
+    // console.log("PREVIOUS STATE", this.state);
     this.setState({ showDeleteModal: false });
-    console.log("NEXT STATE", this.state);
+    // console.log("NEXT STATE", this.state);
   };
 
   render() {

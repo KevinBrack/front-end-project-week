@@ -44,7 +44,7 @@ class ContentWindow extends React.Component {
     axios
       .get("https://projweekbackend.herokuapp.com/api/notes")
       .then(res => {
-        console.log("GET RESPONSE", res);
+        // console.log("GET RESPONSE", res);
         this.setState({ content: res.data });
       })
       .catch(err => {
@@ -75,8 +75,8 @@ class ContentWindow extends React.Component {
   };
 
   handleDeleteNote = note => {
-    console.log("HANDLE DELETE NOTE CALLED!");
-    console.log("NOTE PASSED TO HANDLE DELETE", note);
+    // console.log("HANDLE DELETE NOTE CALLED!");
+    // console.log("NOTE PASSED TO HANDLE DELETE", note);
     const ID = note.id;
     axios
       .delete(`https://projweekbackend.herokuapp.com/api/notes/${ID}`)
