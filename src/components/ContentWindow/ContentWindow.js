@@ -119,7 +119,7 @@ class ContentWindow extends React.Component {
               {...props}
               content={this.state.content}
               editHandler={this.handleEditNote}
-              refreshNotes={this.refreshNotes}
+              postChangeArray={this.postChangeArray}
             />
           )}
         />

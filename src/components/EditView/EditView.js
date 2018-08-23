@@ -55,14 +55,13 @@ class EditView extends React.Component {
   handleEdit = note => {
     axios
       .put(
-        `https://murmuring-oasis-27874.herokuapp.com/api/notes/${
+        `https://projweekbackend.herokuapp.com/api/notes/${
           this.state.current.id
         }`,
         note
       )
-      .then(res => console.log("PUT RESPONSE", res))
+      .then(res => this.props.postChangeArray(res.data))
       .catch(err => console.log(err));
-    this.props.refreshNotes();
   };
 
   // /* make me */
