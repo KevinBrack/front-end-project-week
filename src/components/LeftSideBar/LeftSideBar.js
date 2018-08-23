@@ -30,13 +30,15 @@ const LeftSideBar = () => {
   return (
     <LeftStyled>
       <MainHeader>
-        Lambda<br />Notes
+        Lambda
+        <br />
+        Notes
       </MainHeader>
       <CenteringDiv>
-        <SideBarButton message="View Your Notes" url="/" />
+        <SideBarButton message="View Your Notes" url="/lambda_notes/" />
       </CenteringDiv>
       <CenteringDiv>
-        <SideBarButton message="+ Create New Note" url="/new" />
+        <SideBarButton message="+ Create New Note" url="/lambda_notes/new" />
       </CenteringDiv>
     </LeftStyled>
   );

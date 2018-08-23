@@ -76,7 +76,7 @@ class EditView extends React.Component {
     // console.log(message);
     this.handleEdit(message);
 
-    this.props.history.push(`/note/${this.state.current.id}`);
+    this.props.history.push(`/lambda_notes/note/${this.state.current.id}`);
   };
 
   componentDidMount() {

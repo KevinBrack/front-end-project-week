@@ -34,7 +34,7 @@ const CardBody = styled.p`
 
 const Card = props => {
   return (
-    <Link to={`/note/${props.note.id}`} className="link">
+    <Link to={`/lambda_notes/note/${props.note.id}`} className="link">
       <CardWrapper>
         <CardHeader>{props.note.title}</CardHeader>
         <hr />
